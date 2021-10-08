@@ -2,7 +2,6 @@ package structs
 
 import (
 	"errors"
-	"fmt"
 	"reflect"
 	"time"
 )
@@ -33,7 +32,6 @@ func reflectToMap(iVal reflect.Value, tagName string) map[string]interface{} {
 		} else {
 			name = iType.Field(i).Name
 		}
-		fmt.Println(iVal.Field(i).Kind())
 		switch iVal.Field(i).Kind() {
 		case reflect.Struct:
 			fv := iVal.Field(i).Interface()
@@ -56,7 +54,7 @@ func MergeMap(dest map[string]interface{}, ms ...map[string]interface{}) {
 	if dest == nil {
 		dest = make(map[string]interface{})
 	}
-	
+
 	for _, m := range ms {
 		for k, v := range m {
 			dest[k] = v
@@ -74,12 +72,12 @@ func MergeStruct(dest interface{}, ms ...interface{}) {
 	}
 	iVal = reflect.Indirect(iVal)
 	iType := iVal.Type()
-	
+
 	is := make([]*Struct, len(ms))
 	for i := range ms {
 		is[i] = NewStruct(ms[i], "")
 	}
-	
+
 	for i := 0; i < iVal.NumField(); i++ {
 		if !iVal.Field(i).CanSet() {
 			continue

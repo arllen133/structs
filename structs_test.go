@@ -42,7 +42,7 @@ func TestToMap(t *testing.T) {
 			"abc":   123,
 		},
 	}
-	
+
 	m := ToMap(&student, "json")
 	t.Logf("%+v", m)
 }
@@ -52,12 +52,12 @@ func TestMergeMap(t *testing.T) {
 		"abc":   123,
 		"hello": "world",
 	}
-	
+
 	m2 := map[string]interface{}{
 		"aaa": "haha",
 		"abc": 234,
 	}
-	
+
 	MergeMap(m1, m2)
 	t.Log(m1)
 }
@@ -77,7 +77,7 @@ func TestMergeStruct(t *testing.T) {
 		Province: "",
 		City:     "hangzhou3",
 	}
-	
+
 	MergeStruct(&a1, &a2, a3)
 	t.Logf("%+v", a1)
 }
